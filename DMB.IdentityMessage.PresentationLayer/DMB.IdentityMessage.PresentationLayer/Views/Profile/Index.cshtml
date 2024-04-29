@@ -1,0 +1,166 @@
+﻿@model PasswordChangeViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+<div class="container-fluid">
+
+    <!-- row -->
+    <div class="row">
+        <!-- table section -->
+        <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+
+                <div class="full inbox_inner_section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="full padding_infor_info">
+                                <div class="mail-box">
+                                    @await Component.InvokeAsync("MailLayoutSidebarComponent")
+
+
+
+                                    <div class="col-md-12">
+
+                                        
+                                        <div class="inbox-body">
+
+                                            <div class="col-md-12">
+                                                <div class="dark_bg full margin_bottom_30">
+                                                    <div class="full graph_head">
+                                                        <div class="heading1 margin_0">
+                                                            <h2 class="text-white"> <i class="fa fa-user "> @ViewBag.name</i>
+                                                                
+                                                            </h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="full graph_revenue">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="content testimonial">
+                                                                    <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
+                                                                        <!-- Wrapper for carousel items -->
+                                                                        <div class="carousel-inner">
+                                                                            <div class="item carousel-item active">
+                                                                                <div class="img-box"><img src="@ViewBag.ımage" alt=""></div>
+                                                                                <br /><br />
+                                                                                <div class="row column1">
+                                                                                    <div class="col-md-6 col-lg-3">
+                                                                                        
+                                                                                            <div class="couter_icon">
+                                                                                                <div>
+                                                                                                <i class="fa fa-envelope-o white_color"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="counter_no">
+                                                                                                <div>
+                                                                                                <p class="total_no">@ViewBag.Inbox</p>
+                                                                                                    <p class="head_couter">Gelen Mesajlar</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-lg-3">
+                                                                                       
+                                                                                            <div class="couter_icon">
+                                                                                                <div>
+                                                                                                <i class="fa fa-envelope blue1_color"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="counter_no">
+                                                                                                <div>
+                                                                                                <p class="total_no">@ViewBag.Sendbox</p>
+                                                                                                    <p class="head_couter">Göndereilen Mesajlar</p>
+                                                                                                </div>
+                                                                                            
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-lg-3">
+                                                                                        
+                                                                                            <div class="couter_icon">
+                                                                                                <div>
+                                                                                                    <i class="fa fa-star yellow_color"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="counter_no">
+                                                                                                <div>
+                                                                                                <p class="total_no">@ViewBag.Import</p>
+                                                                                                    <p class="head_couter">Önemli Mesajlar</p>
+                                                                                                </div>
+                                                                                          
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-lg-3">
+                                                                                      
+                                                                                            <div class="couter_icon">
+                                                                                                <div>
+                                                                                                <i class="fa fa-envelope-square red_color"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="counter_no">
+                                                                                                <div>
+                                                                                                <p class="total_no">@ViewBag.read </p>
+                                                                                                    <p class="head_couter">Okunamamış Mesajlar</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                       
+                                                                                    </div>
+                                                                                </div>
+                                                                                <p class="testimonial">
+                                                                                    <form method="post" asp-controller="Profile" asp-action="Index" role="form text-left">
+                                                                                        <div class="mb-3">
+                                                                                            <input type="password" asp-for="OldPassword" class="form-control mb-2" placeholder="Eski Şifre" aria-label="Eski Şifre">                         <span asp-validation-for="OldPassword" class="text-white"> </span>
+                                                                                        </div>
+                                                                                        <div class="mb-3">
+                                                                                            <input type="password" asp-for="NewPassword" class="form-control mb-2" placeholder="Yeni Şifre" aria-label="Yeni Şifre">                                 <span asp-validation-for="NewPassword" class="text-white"> </span>
+                                                                                        </div>
+
+                                                                                        <div class="mb-3">
+                                                                                            <input type="password" asp-for="NewPasswordConfirm" class="form-control mb-2" placeholder="Yeni Şifre Tekrar" aria-label="Yeni şifre tekrar">
+                                                                                            
+                                                                                            <span asp-validation-for="NewPasswordConfirm" class="text-white"> </span>
+                                                                                        </div>
+                                                                                        <div class="text-white bg-danger" asp-validation-summary="ModelOnly"> </div>
+                                                                                        @if (TempData["PasswordChange"] != null)
+                                                                                        {
+                                                                                            <div class="alert alert-success font-weight-bold mt-3 text-xs">
+                                                                                                @TempData["PasswordChange"]
+                                                                                            </div>
+                                                                                        }
+
+                                                                                        <div class="text-center">
+                                                                                            <button type="submit" class="btn bg-gradient-primary float-start my-4 mb-2">Şifre Değiştir</button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </p>
+                                                                              @*   <p class="overview"><b>Michael Stuart</b>Seo Founder</p> *@
+                                                                            </div>
+
+                                                                        </div>
+                                                                        
+                                                                        <!-- Carousel controls -->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- /.card -->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- table section -->
+    </div>
+</div>
+

@@ -1,0 +1,131 @@
+﻿
+
+@using System.Text.RegularExpressions
+@model List<ListMailModel>
+@{
+    ViewData["Title"] = "Junk";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@functions {
+    public string RemoveHtmlTags(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        var regex = new Regex("<.*?>");
+        return regex.Replace(input, "");
+    }
+}
+
+<div class="container-fluid">
+
+    <!-- row -->
+    <div class="row">
+        <!-- table section -->
+        <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+
+                <div class="full inbox_inner_section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="full padding_infor_info">
+                                <div class="mail-box">
+                                    @await Component.InvokeAsync("MailLayoutSidebarComponent")
+
+
+
+                                    <div class="col-md-12">
+
+                                        <div class="inbox-head">
+                                            <h3>Spam Kutusu</h3>
+                                            <form action="#" class="pull-right position search_inbox">
+                                                <div class="input-append">
+                                                    <input type="text" class="sr-input" placeholder="Search Mail">
+                                                    <button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="inbox-body">
+                                            <div class="mail-option">
+
+
+                                                <div class="btn-group hidden-phone ">
+
+
+                                                    <button type="button" onclick="deleteSelectedMail()" class="btn btn-danger"><i class="fa fa-trash-o"></i> Sil</button>
+                                                    <button type="button" onclick="junkSelectedMail()" class="btn btn-secondary"><i class="fa fa-ban"></i> Spam</button>
+
+                                                </div>
+
+                                                <ul class="unstyled inbox-pagination">
+
+                                                    <li>
+                                                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <table class="table table-inbox table-hover">
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr @(item.IsRead ? "class=unread" : "")>
+                                                            <td>
+                                                                <div class="icheck-primary">
+                                                                    <input type="checkbox" value="@item.MailId" id="delete">
+                                                                    <label for="delete"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td class="mailbox-star">
+                                                                <a href="/Mail/MakeImportant/@item.MailId?redirectAction=Junk">
+                                                                    <i class="fa fa-star@(item.IsImportant ? " text-warning" : "")"></i>
+                                                                </a>
+                                                            </td>
+                                                            <td class="mailbox-name"><a href="/Mail/ReadMail/@item.MailId?redirectAction=Inbox">@item.Sender.Email</a></td>
+                                                            <td class="mailbox-subject">
+                                                                <b>@item.MailSubject</b>
+                                                                @{
+                                                                    if (!string.IsNullOrEmpty(item.MailContent))
+                                                                    {
+                                                                        // İlk 50 kelimeyi veya tamamını al
+                                                                        var contentToShow = item.MailContent.Split(' ').Length > 10 ? string.Join(" ", item.MailContent.Split(' ').Take(10)) + "..." : item.MailContent;
+                                                                        @Html.Raw(RemoveHtmlTags(contentToShow))
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.Raw(string.Empty)
+                                                                    }
+                                                                }
+                                                            </td>
+                                                            <td class="mailbox-attachment"></td>
+                                                            <td class="mailbox-date">
+                                                                @item.MailTime.ToString("hh\\:mm")
+                                                            </td>
+                                                        </tr>
+                                                    }
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- /.card -->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- table section -->
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/trashdelete.js"></script>
+

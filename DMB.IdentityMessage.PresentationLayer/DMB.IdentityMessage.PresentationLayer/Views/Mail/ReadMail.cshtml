@@ -1,0 +1,103 @@
+﻿@model ListMailModel
+@{
+    ViewData["Title"] = "ReadMail";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- row -->
+    <div class="row">
+        <!-- table section -->
+        <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+
+                <div class="full inbox_inner_section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="full padding_infor_info">
+                                <div class="mail-box">
+                                    @await Component.InvokeAsync("MailLayoutSidebarComponent")
+
+
+
+                                    <div class="col-md-12">
+                                        <div class="card card-primary card-outline">
+                                         
+                                            <div class="card-header">
+                                                <h3 class="btn-group">Mail Detay</h3>
+
+                                                <ul class="unstyled inbox-pagination">
+
+                                                    <li>
+                                                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body p-0">
+                                                <div class="mailbox-read-info" >
+                                                   
+                                                    <h5>@Model.MailSubject</h5>
+                                                    <h6>
+                                                        From: @Model.SenderEmail
+                                                        <span class="mailbox-read-time float-right">@Model.MailDate.ToString("dd-MMM-yyyyy") @Model.MailTime.ToString("hh\\:mm") PM</span>
+                                                    </h6>
+                                                </div>
+                                                <!-- /.mailbox-read-info -->
+                                                <div class="mailbox-controls with-border text-center" ">
+                                                    <div class="btn-group ">
+                                                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
+                                                            <i class="fa fa-reply"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
+                                                            <i class="fa fa-share"></i>
+                                                        </button>
+                                                    </div>
+                                                    <!-- /.btn-group -->
+                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                                                        <i class="fa fa-print"></i>
+                                                    </button>
+                                                </div>
+                                                <!-- /.mailbox-controls -->
+                                                <div class="mailbox-read-message">
+                                                    @Html.Raw(@Model.MailContent)
+                                                </div>
+                                                <!-- /.mailbox-read-message -->
+                                            </div>
+                                            <!-- /.card-body -->
+                                            <div class="card-footer bg-white">
+                                                
+                                            </div>
+                                            <!-- /.card-footer -->
+                                            <div class="card-footer">
+                                                <div class="float-right">
+                                                    <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
+                                                    <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
+                                                </div>
+                                                <button type="button" class="btn btn-default"><i class="far fa-trash-alt"></i> Delete</button>
+                                                <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
+                                            </div>
+                                            <!-- /.card-footer -->
+                                        </div>
+                                        <!-- /.card -->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- table section -->
+    </div>
+</div>
+
+

@@ -1,0 +1,130 @@
+﻿@model ListMailModel
+@{
+    ViewData["Title"] = "Compose";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white_shd full margin_bottom_30">
+                <div class="full inbox_inner_section">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="full padding_infor_info">
+                                <div class="mail-box">
+                                    @await Component.InvokeAsync("MailLayoutSidebarComponent")
+
+                                    <div class="col-md-12">
+                                        <div class="card card-primary card-outline">
+                                            <div class="card-header">
+                                                <h3 class="card-title">Mesaj Gönderme Sayfası</h3>
+                                            </div>
+                                            <form method="post" id="MailForm">
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <input class="form-control" asp-for="ReceiverEmail" placeholder="To:">
+                                                        <input type="hidden" asp-for="MailId" placeholder="To:">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input class="form-control" asp-for="MailSubject" placeholder="Subject:">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <textarea id="compose-textarea" asp-for="MailContent" class="form-control" style="height: 300px"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="btn btn-default btn-file">
+                                                            <i class="fas fa-paperclip"></i> Attachment
+                                                            <input type="file" name="attachment">
+                                                        </div>
+                                                        <p class="help-block">Max. 32MB</p>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <div class="float-right">
+                                                        <button type="button" id="btnDraft" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Taslak</button>
+                                                        <button type="button" id="btnSend" class="btn btn-primary"><i class="far fa-envelope"></i> Mesaj</button>
+                                                    </div>
+                                                    <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script>
+    $(document).ready(function () {
+        $("#btnDraft").click(function (event) {
+            event.preventDefault();
+            var formData = new FormData($("#MailForm")[0]);
+
+            $.ajax({
+                type: "POST",
+                url: '/Mail/DraftAdd', // DraftAdd metoduna gönderim
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log("Draft created successfully");
+                    console.log(response);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Taslak Oluşturuldu!',
+                        text: 'Taslak başarıyla kaydedildi.',
+                     
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/Mail/Draft'; // Başarılı olduğunda yönlendirme
+                        }
+                    });
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("An error occurred while creating draft");
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+        $("#btnSend").click(function (event) {
+            event.preventDefault();
+            var formData = new FormData($("#MailForm")[0]);
+
+            $.ajax({
+                type: "POST",
+                url: '/Mail/Compose',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log("Mail sent successfully");
+                    console.log(response);
+
+                 Swal.fire({
+    icon: 'success',
+    title: 'Mesaj Gönderildi denemeee!',
+    text: 'Mesaj başarıyla gönderildi.'
+}).then((result) => {
+    if (result.isConfirmed) {
+        window.location.href = '/Mail/Sendbox'; // Başarılı olduğunda yönlendirme
+    }
+});
+                },
+                error: function (xhr, status, error) {
+                    console.log("An error occurred while sending mail");
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script> 

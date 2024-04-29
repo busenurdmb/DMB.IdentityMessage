@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AdminLTE-3.0.4\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v2-4-x.md" />
+    <None Include="wwwroot\AdminLTE-3.0.4\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3-x.md" />
+    <None Include="wwwroot\AdminLTE-3.0.4\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v3-x.md" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\css\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\css\bootstrap\mixins\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\fonts\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\images\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\js\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\scss\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-19\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\css\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\css\bootstrap\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\css\bootstrap\mixins\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\fonts\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\images\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\js\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\scss\.DS_Store" />
+    <None Include="wwwroot\AdminLTE-3.0.4\login-form-20\scss\bootstrap\.DS_Store" />
+    <None Include="wwwroot\pluto-1.0.0\.DS_Store" />
+    <None Include="wwwroot\pluto-1.0.0\images\.DS_Store" />
+    <None Include="wwwroot\pluto-1.0.0\images\layout_img\.DS_Store" />
+    <None Include="wwwroot\pluto-1.0.0\modules\.DS_Store" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DMB.IdentityMessage.BusinessLayer\DMB.IdentityMessage.BusinessLayer\DMB.IdentityMessage.BusinessLayer.csproj" />
+  </ItemGroup>
+
+</Project>

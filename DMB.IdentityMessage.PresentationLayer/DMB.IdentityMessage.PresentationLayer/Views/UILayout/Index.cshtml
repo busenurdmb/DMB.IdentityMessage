@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("UILayoutHeadComponent")
+<body class="inner_page email_page">
+    <div class="full_container" >
+        
+   @*      <div class="inner_container"> *@
+            <!-- Sidebar  -->
+            @* @await Component.InvokeAsync("UILayoutSidebarComponent") *@
+
+            <!-- end sidebar -->
+            <!-- right content -->
+            <!-- Main content -->
+            
+            <!-- /.content -->
+           @*  <div id="content"> *@
+                <!-- topbar -->
+                @await Component.InvokeAsync("UILayoutNavbarComponent")
+
+                <!-- end topbar -->
+
+                <!-- dashboard inner -->
+                @* <div class="midde_cont"> *@
+        <div class="container-fluid" style="margin-top: 50px;">
+                    @RenderBody()
+                    </div>>
+                    <!-- footer -->
+                    @await Component.InvokeAsync("UILayoutFooterComponent")
+
+             @*    </div>
+                <!-- end dashboard inner -->
+            </div>
+
+        </div> *@
+        <!-- model popup -->
+    </div>
+
+    @await Component.InvokeAsync("UILayoutScriptComponent")
+
+</body>
+</html>

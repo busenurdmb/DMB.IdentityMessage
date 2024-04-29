@@ -1,0 +1,76 @@
+﻿<aside class="sm-side">
+    <div class="user-head">
+        <a class="inbox-avatar" href="javascript:;">
+            <img width="65" src="@ViewBag.ImageUrl" alt="#" />
+        </a>
+        <div class="user-name">
+            <h5><a href="#">@ViewBag.user</a></h5>
+            <span><a href="#">@ViewBag.email</a></span>
+        </div>
+    </div>
+    <div class="inbox-body">
+        <a href="/Mail/Compose"  title="Compose" class="btn btn-compose">
+            Mail Gönder
+        </a>
+        <!-- Modal -->
+    </div>
+    <ul class="nav nav-pills nav-stacked labels-category inbox-divider">
+        @*  <ul class="nav nav-pills flex-column"> *@
+        <li class="nav-item active">
+            <a href="/Mail/Inbox" class="nav-link">
+                <i class="fa fa-inbox"></i> Gelen Kutusu
+                <span class="badge bg-primary float-right">@ViewBag.Inbox</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Mail/Sendbox" class="nav-link">
+                <i class="fa fa-envelope"></i> Gönderilen Mesajlar
+                <span class="badge bg-success float-right">@ViewBag.Sendbox</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Mail/Draft" class="nav-link">
+                <i class="fa fa-file-text"></i> Taslaklar
+                <span class="badge bg-warning float-right">@ViewBag.Draft</span>
+
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Mail/Junk" class="nav-link">
+                <i class="fa fa-filter"></i> Spam
+                <span class="badge bg-secondary float-right">@ViewBag.Junk</span>
+           
+
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Mail/Trash" class="nav-link">
+                <i class="fa fa-trash"></i> Çöp Kutusu
+                <span class="badge bg-danger float-right">@ViewBag.Trash</span>
+            </a>
+        </li>
+        @* </ul> *@
+
+    </ul>
+    <ul class="nav nav-pills nav-stacked labels-category">
+      
+        <li class="nav-item">
+            <a href="/Mail/Important" class="nav-link">
+                <i class="fa fa-circle text-danger"></i>
+                Yıldızlanmış Mesajlar
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Profile/Index" class="nav-link">
+                <i class="fa fa-circle text-warning"></i> Profil
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/Login/SignOut" class="nav-link">
+                <i class="fa fa-circle text-primary"></i>
+                Çıkış Yap
+            </a>
+        </li>
+
+    </ul>
+</aside>

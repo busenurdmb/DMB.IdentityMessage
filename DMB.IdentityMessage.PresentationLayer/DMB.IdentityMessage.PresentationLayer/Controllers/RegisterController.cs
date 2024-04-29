@@ -3,11 +3,13 @@ using DMB.IdentityMessage.BusinessLayer.Dto;
 using DMB.IdentityMessage.BusinessLayer.Validation.Register;
 using DMB.IdentityMessage.EntityLayer.Entities;
 using DMB.IdentityMessage.PresentationLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DMB.IdentityMessage.PresentationLayer.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _usermanager;

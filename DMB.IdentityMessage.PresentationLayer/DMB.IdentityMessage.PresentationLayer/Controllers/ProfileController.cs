@@ -6,12 +6,15 @@ using DMB.IdentityMessage.BusinessLayer.Validation.Register;
 using DMB.IdentityMessage.EntityLayer.Entities;
 using DMB.IdentityMessage.PresentationLayer.Models;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace DMB.IdentityMessage.PresentationLayer.Controllers
 {
+    [Authorize]
+
     public class ProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -26,14 +29,6 @@ namespace DMB.IdentityMessage.PresentationLayer.Controllers
             _mapper = mapper;
             _mailService = mailService;
         }
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-          await  LoadUserInformationAsync();
-
-            return View();
-        }
-
 
         public async Task LoadUserInformationAsync()
         {
@@ -45,6 +40,14 @@ namespace DMB.IdentityMessage.PresentationLayer.Controllers
             ViewBag.Import = _mailService.GetSendandReceiverMailnameListAllbyİmportId(user.Id).Count;
             ViewBag.read = _mailService.GetSendandReceiverMailnameListAllbyReadId(user.Id).Count;
         }
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+          await  LoadUserInformationAsync();
+
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Index(PasswordChangeViewModel model)
         {

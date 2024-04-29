@@ -2,6 +2,7 @@
 using DMB.IdentityMessage.BusinessLayer.Abstract;
 using DMB.IdentityMessage.EntityLayer.Entities;
 using DMB.IdentityMessage.PresentationLayer.Models.Mail;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using Newtonsoft.Json.Linq;
 
 namespace DMB.IdentityMessage.PresentationLayer.Controllers
 {
+    [Authorize]
     public class MailController : Controller
     {
         private readonly UserManager<AppUser> _userManager;

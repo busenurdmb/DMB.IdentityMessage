@@ -6,7 +6,9 @@ using DMB.IdentityMessage.DataAccessLayer.Context;
 using DMB.IdentityMessage.DataAccessLayer.EfEntityFramework;
 using DMB.IdentityMessage.EntityLayer.Entities;
 using DMB.IdentityMessage.PresentationLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using System;
 using System.Reflection;
 
@@ -28,6 +30,17 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 //    config.User.AllowedUserNameCharacters = "abcçdefghiýjklmnoöpqrsþtuüvwxyzABCÇDEFGHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789-._@+"; //Kullanýcý adýnda geçerli olan karakterleri belirtiyoruz.
 
 //});
+var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+// PROJE GENEELÝ AUTHENTÝCATÝON
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+});
+
+builder.Services.ConfigureApplicationCookie(opts =>
+{
+    opts.LoginPath = "/Login/Index";
+});
 
 
 var app = builder.Build();
@@ -51,6 +64,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
